@@ -9,7 +9,7 @@ namespace Game.Scripts.LiveObjects
 {
     public class InteractableZone : MonoBehaviour
     {
-        private enum ZoneType
+        public enum ZoneType
         {
             Collectable,
             Action,
@@ -23,9 +23,9 @@ namespace Game.Scripts.LiveObjects
         }
 
         [SerializeField]
-        private ZoneType _zoneType;
+        public ZoneType _zoneType;
         [SerializeField]
-        private int _zoneID;
+        public int _zoneID;
         [SerializeField]
         private int _requiredID;
         [SerializeField]
@@ -33,9 +33,9 @@ namespace Game.Scripts.LiveObjects
         private string _displayMessage;
         [SerializeField]
         private GameObject[] _zoneItems;
-        private bool _inZone = false;
-        private bool _itemsCollected = false;
-        private bool _actionPerformed = false;
+        public bool _inZone = false;
+        public bool _itemsCollected = false;
+        public bool _actionPerformed = false;
         [SerializeField]
         private Sprite _inventoryIcon;
         [SerializeField]
@@ -44,9 +44,10 @@ namespace Game.Scripts.LiveObjects
         private KeyState _keyState;
         [SerializeField]
         private GameObject _marker;
+        
 
         private bool _inHoldState = false;
-
+       
         private static int _currentZoneID = 0;
         public static int CurrentZoneID
         { 
@@ -66,10 +67,62 @@ namespace Game.Scripts.LiveObjects
         public static event Action<int> onHoldStarted;
         public static event Action<int> onHoldEnded;
 
+
+        private PlayerInputActions _input;
+
         private void OnEnable()
         {
             InteractableZone.onZoneInteractionComplete += SetMarker;
+            _input = new PlayerInputActions();
+            _input.Player.Enable();
+            _input.Player.Action.performed += Action_performed;
+            _input.Player.Collect.performed += Collect_performed;
+            _input.Player.Hold.started += Hold_started;
+            _input.Player.Hold.canceled += Hold_canceled;
+            
+        }
 
+        private void Hold_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            if(_inZone == true && _keyState == KeyState.PressHold && _zoneType == ZoneType.HoldAction)
+            {
+                onHoldEnded?.Invoke(_zoneID);
+            }
+        }
+
+
+        private void Hold_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            if(_inZone == true && _keyState == KeyState.PressHold && _zoneType == ZoneType.HoldAction)
+            {
+                PerformHoldAction();
+            }
+        }
+
+        private void Collect_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            if (_inZone == true  && _zoneType == ZoneType.Collectable)
+            {
+                if (_itemsCollected == false)
+                {
+                    CollectItems();
+                    _itemsCollected = true;
+                    UIManager.Instance.DisplayInteractableZoneMessage(false);
+                }
+            }
+        }
+
+        private void Action_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            if(_inZone == true && _keyState != KeyState.PressHold && _zoneType == ZoneType.Action)
+            {
+                if (_actionPerformed == false)
+                {
+                    PerformAction();
+                    _actionPerformed = true;
+                    UIManager.Instance.DisplayInteractableZoneMessage(false);
+                }
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -120,12 +173,13 @@ namespace Game.Scripts.LiveObjects
             }
         }
 
-        private void Update()
+       /* private void Update()
         {
             if (_inZone == true)
             {
 
                 if (Input.GetKeyDown(_zoneKeyInput) && _keyState != KeyState.PressHold)
+               
                 {
                     //press
                     switch (_zoneType)
@@ -171,9 +225,9 @@ namespace Game.Scripts.LiveObjects
 
                
             }
-        }
+        }*/
        
-        private void CollectItems()
+        public void CollectItems()
         {
             foreach (var item in _zoneItems)
             {
@@ -183,12 +237,12 @@ namespace Game.Scripts.LiveObjects
             UIManager.Instance.UpdateInventoryDisplay(_inventoryIcon);
 
             CompleteTask(_zoneID);
-
+       
             onZoneInteractionComplete?.Invoke(this);
 
         }
 
-        private void PerformAction()
+        public void PerformAction()
         {
             foreach (var item in _zoneItems)
             {

@@ -3,23 +3,101 @@
     "maps": [
         {
             "name": "Player",
-            "id": "accd3cb4-220a-4457-9256-f2de1aedc563",
+            "id": "74706d85-c84a-414f-b26b-bc19f8ece70c",
             "actions": [
+                {
+                    "name": "Action",
+                    "type": "Button",
+                    "id": "b44a94a0-afa8-4f0a-af2e-c591a1f2fa31",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Collect",
+                    "type": "Button",
+                    "id": "8a357ce8-7345-4cab-8e59-e9d6637a70a8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hold",
+                    "type": "Button",
+                    "id": "eb65ab4c-697a-47fb-a53a-e28630a98075",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
                 {
                     "name": "Walk",
                     "type": "Value",
-                    "id": "c08e5099-7d45-4151-b4ce-cc88153cc750",
-                    "expectedControlType": "Vector3",
+                    "id": "17693cf7-6c3c-43bc-8243-778d567f215b",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ChangeCam",
+                    "type": "Button",
+                    "id": "131d2b0b-636f-4c1b-80bf-019577262a77",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "b6bfaec2-06bc-44c1-b71b-8009ebc8538e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "3D Vector",
-                    "id": "3ad6fca3-c924-4503-9cd3-a7f12b99b40b",
-                    "path": "3DVector",
+                    "name": "",
+                    "id": "7f962cc0-5d63-4979-ac6e-2c901e373250",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47c3e63a-6d19-45c7-a49f-83892a3170df",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Collect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bcd5932b-d290-4da5-92fb-062c3afde88c",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "18064df6-7017-4b8c-aad8-ca1c0fce6bf4",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -28,52 +106,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Up",
-                    "id": "c25eada1-9b65-4bb8-ae51-6e73ce58d24b",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Walk",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Down",
-                    "id": "b33a003e-70ee-4e07-b60d-c1fe4e213e69",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Walk",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Left",
-                    "id": "a18084ff-934b-4acf-a7ea-bf8296279875",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Walk",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Right",
-                    "id": "86be10d9-25f7-4c7e-b849-64b950de6128",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Walk",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Forward",
-                    "id": "34f595ae-07e3-4219-acc0-d1af4843a626",
+                    "name": "up",
+                    "id": "3aeb5373-dd68-4fb0-8838-abd373291499",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -83,8 +117,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Backward",
-                    "id": "52a0e5cf-8fa8-4a44-8ac4-0c1fefbe9180",
+                    "name": "down",
+                    "id": "4af22047-4ff2-4aa5-9292-5640a7062780",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -92,6 +126,50 @@
                     "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "6618e21a-bb6b-4d9a-aa0e-16c4c2eaedda",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "cdef8561-bb1f-468b-80ee-e8b684140db6",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "bdad4d9a-9c92-4b28-baf3-ac9de61673ce",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeCam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ec21ff8b-9b7a-4855-9c83-8a07bdeb56d9",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

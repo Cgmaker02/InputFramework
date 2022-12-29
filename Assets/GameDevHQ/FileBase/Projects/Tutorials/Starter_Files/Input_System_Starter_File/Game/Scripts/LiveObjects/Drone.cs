@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using Game.Scripts.UI;
+using UnityEngine.InputSystem;
 
 namespace Game.Scripts.LiveObjects
 {
@@ -25,6 +26,7 @@ namespace Game.Scripts.LiveObjects
         private CinemachineVirtualCamera _droneCam;
         [SerializeField]
         private InteractableZone _interactableZone;
+        private PlayerInputActions _input;
         
 
         public static event Action OnEnterFlightMode;
@@ -33,6 +35,14 @@ namespace Game.Scripts.LiveObjects
         private void OnEnable()
         {
             InteractableZone.onZoneInteractionComplete += EnterFlightMode;
+            _input = new PlayerInputActions();
+            _input.Player.Enable();
+            _input.Player.Escape.performed += Escape_performed;
+        }
+
+        private void Escape_performed(InputAction.CallbackContext obj)
+        {
+            ExitFlightMode();
         }
 
         private void EnterFlightMode(InteractableZone zone)

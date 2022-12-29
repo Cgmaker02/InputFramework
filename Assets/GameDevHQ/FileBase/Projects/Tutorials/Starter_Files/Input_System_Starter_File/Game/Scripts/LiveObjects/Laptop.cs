@@ -19,6 +19,7 @@ namespace Game.Scripts.LiveObjects
         private int _activeCamera = 0;
         [SerializeField]
         private InteractableZone _interactableZone;
+        private PlayerInputActions _input;
 
         public static event Action onHackComplete;
         public static event Action onHackEnded;
@@ -27,9 +28,37 @@ namespace Game.Scripts.LiveObjects
         {
             InteractableZone.onHoldStarted += InteractableZone_onHoldStarted;
             InteractableZone.onHoldEnded += InteractableZone_onHoldEnded;
+            _input = new PlayerInputActions();
+            _input.Player.Enable();
+            _input.Player.ChangeCam.performed += ChangeCam_performed;
+            _input.Player.Escape.performed += Escape_performed;
         }
 
-        private void Update()
+        private void Escape_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            _hacked = false;
+            onHackEnded?.Invoke();
+            ResetCameras();
+        }
+
+        private void ChangeCam_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            if (_hacked == true)
+            {
+                var previous = _activeCamera;
+                _activeCamera++;
+
+                if (_activeCamera >= _cameras.Length)
+                {
+                    _activeCamera = 0;
+                }
+
+                _cameras[_activeCamera].Priority = 11;
+                _cameras[previous].Priority = 9;
+            }
+        }
+
+       /* private void Update()
         {
             if (_hacked == true)
             {
@@ -54,7 +83,7 @@ namespace Game.Scripts.LiveObjects
                     ResetCameras();
                 }
             }
-        }
+        }*/
 
         void ResetCameras()
         {

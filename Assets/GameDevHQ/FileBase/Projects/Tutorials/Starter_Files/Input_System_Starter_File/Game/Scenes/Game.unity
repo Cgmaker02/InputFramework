@@ -3267,6 +3267,9 @@ MonoBehaviour:
   _requiredID: 5
   _displayMessage: Break the Crate
   _zoneItems: []
+  _inZone: 0
+  _itemsCollected: 0
+  _actionPerformed: 0
   _inventoryIcon: {fileID: 21300000, guid: 88841726d7ebbfc46bf799ee1bfb7d3f, type: 3}
   _zoneKeyInput: 101
   _keyState: 0
@@ -8651,6 +8654,9 @@ MonoBehaviour:
   _displayMessage: Place C4
   _zoneItems:
   - {fileID: 758722189}
+  _inZone: 0
+  _itemsCollected: 0
+  _actionPerformed: 0
   _inventoryIcon: {fileID: 21300000, guid: 8e46bcb2f14d4d144b9e4a395b47efa2, type: 3}
   _zoneKeyInput: 101
   _keyState: 0
@@ -10772,6 +10778,9 @@ MonoBehaviour:
   _requiredID: 1
   _displayMessage: Denotate C4
   _zoneItems: []
+  _inZone: 0
+  _itemsCollected: 0
+  _actionPerformed: 0
   _inventoryIcon: {fileID: 21300000, guid: 88841726d7ebbfc46bf799ee1bfb7d3f, type: 3}
   _zoneKeyInput: 32
   _keyState: 0
@@ -11881,7 +11890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 621990727}
   - component: {fileID: 621990726}
-  - component: {fileID: 621990725}
+  - component: {fileID: 621990728}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -11889,25 +11898,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &621990725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621990724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &621990726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11938,6 +11928,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &621990728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621990724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
 --- !u!1001 &626660188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13206,7 +13235,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -18262,6 +18291,9 @@ MonoBehaviour:
   _requiredID: 6
   _displayMessage: Reset
   _zoneItems: []
+  _inZone: 0
+  _itemsCollected: 0
+  _actionPerformed: 0
   _inventoryIcon: {fileID: 0}
   _zoneKeyInput: 101
   _keyState: 0
@@ -18392,7 +18424,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972744894}
-  m_LocalRotation: {x: 0.22150531, y: 0.046846475, z: -0.010654013, w: 0.97397506}
+  m_LocalRotation: {x: 0.22150685, y: 0.046706066, z: -0.010622082, w: 0.97398174}
   m_LocalPosition: {x: -0.48177326, y: 4.5286655, z: -4.833789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -25243,6 +25275,9 @@ MonoBehaviour:
   _zoneItems:
   - {fileID: 474256985}
   - {fileID: 908574055}
+  _inZone: 0
+  _itemsCollected: 0
+  _actionPerformed: 0
   _inventoryIcon: {fileID: 21300000, guid: 81dff3a1ca824714aae965897edd2351, type: 3}
   _zoneKeyInput: 101
   _keyState: 0
@@ -26555,6 +26590,9 @@ MonoBehaviour:
   _requiredID: 4
   _displayMessage: Drive Forklift
   _zoneItems: []
+  _inZone: 0
+  _itemsCollected: 0
+  _actionPerformed: 0
   _inventoryIcon: {fileID: 21300000, guid: 88841726d7ebbfc46bf799ee1bfb7d3f, type: 3}
   _zoneKeyInput: 101
   _keyState: 0
@@ -31380,9 +31418,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1550399100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 00816970e84b23b48bd8d55fe5a10a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _progressBar: {fileID: 0}
+  _hackTime: 5
+  _cameras: []
+  _interactableZone: {fileID: 0}
 --- !u!114 &1550399106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36037,6 +36079,9 @@ MonoBehaviour:
   _requiredID: 3
   _displayMessage: Fly Drone
   _zoneItems: []
+  _inZone: 0
+  _itemsCollected: 0
+  _actionPerformed: 0
   _inventoryIcon: {fileID: 0}
   _zoneKeyInput: 101
   _keyState: 0
@@ -36163,7 +36208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c14085171003ee2478ef40ebd5fcbee8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.036
+      value: 6.89
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c14085171003ee2478ef40ebd5fcbee8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -39789,6 +39834,9 @@ MonoBehaviour:
   _requiredID: 2
   _displayMessage: Hack Cameras
   _zoneItems: []
+  _inZone: 0
+  _itemsCollected: 0
+  _actionPerformed: 0
   _inventoryIcon: {fileID: 0}
   _zoneKeyInput: 101
   _keyState: 1
@@ -41734,6 +41782,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 359860633}
+  _detonator: {fileID: 0}
+  _interaction: {fileID: 1176696857}
 --- !u!4 &2144513253
 Transform:
   m_ObjectHideFlags: 0

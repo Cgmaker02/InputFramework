@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 namespace Game.Scripts.LiveObjects
 {
@@ -19,6 +20,7 @@ namespace Game.Scripts.LiveObjects
         private bool _inDriveMode = false;
         [SerializeField]
         private InteractableZone _interactableZone;
+        private PlayerInputActions _input;
 
         public static event Action onDriveModeEntered;
         public static event Action onDriveModeExited;
@@ -26,6 +28,14 @@ namespace Game.Scripts.LiveObjects
         private void OnEnable()
         {
             InteractableZone.onZoneInteractionComplete += EnterDriveMode;
+            _input = new PlayerInputActions();
+            _input.Player.Enable();
+            _input.Player.Escape.performed += Escape_performed;
+        }
+
+        private void Escape_performed(InputAction.CallbackContext obj)
+        {
+            ExitDriveMode();
         }
 
         private void EnterDriveMode(InteractableZone zone)

@@ -43,7 +43,7 @@ namespace Game.Scripts.LiveObjects
             Destroy(this.gameObject);
         }
 
-        void PlaceC4(Transform target)
+        public void PlaceC4(Transform target)
         {
             _c4.Place(target);
             _c4.gameObject.SetActive(true);

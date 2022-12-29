@@ -21,6 +21,7 @@ namespace Game.Scripts.Player
         private CinemachineVirtualCamera _followCam;
         [SerializeField]
         private GameObject _model;
+        private Vector2 _move;
 
 
         private void OnEnable()
@@ -55,11 +56,18 @@ namespace Game.Scripts.Player
 
         }
 
+        public void SetMove(Vector2 move)
+        {
+            _move = move;
+        }
         private void CalcutateMovement()
         {
             _playerGrounded = _controller.isGrounded;
-            float h = Input.GetAxisRaw("Horizontal");
-            float v = Input.GetAxisRaw("Vertical");
+            //float h = Input.GetAxisRaw("Horizontal");
+            //float v = Input.GetAxisRaw("Vertical");
+
+            float h = _move.x;
+            float v = _move.y;
 
             transform.Rotate(transform.up, h);
 
@@ -112,7 +120,7 @@ namespace Game.Scripts.Player
             _model.SetActive(false);
         }
                
-        private void TriggerExplosive()
+        public void TriggerExplosive()
         {
             _detonator.TriggerExplosion();
         }
