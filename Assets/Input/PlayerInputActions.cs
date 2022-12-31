@@ -194,6 +194,162 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Drone"",
+            ""id"": ""d397581b-cf43-4073-8cba-a33ba7a17d5c"",
+            ""actions"": [
+                {
+                    ""name"": ""Flight"",
+                    ""type"": ""Value"",
+                    ""id"": ""db664deb-93d7-447f-8b10-c13e73b41c0c"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Thrust"",
+                    ""type"": ""Value"",
+                    ""id"": ""a3ce4886-5211-4bdd-a5e1-5e1e2cbfc175"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""ad6b0330-f340-4d98-b620-79375ada9bfb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""5ea1d194-f0e2-4b46-8627-36c515631c75"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Thrust"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""860fb576-1d62-4643-bb5a-0fd5eebd6bf3"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Thrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""852f6f18-fe00-4412-873a-9cd242b2d5fe"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Thrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6de0f575-b917-4335-806c-daae9853dd19"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""3D Vector"",
+                    ""id"": ""2fda52c0-ccb4-4f43-a976-e0bf323988e0"",
+                    ""path"": ""3DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flight"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""ebac6955-9e7d-481b-9a5d-c09d3037d03b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""5d43368b-8141-4e66-a69a-5a6181857d36"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""76f61663-0cf4-4256-a6f9-2219257958bd"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""030f157a-d873-4e4c-9891-a52919a7ebe4"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""forward"",
+                    ""id"": ""c6ae61de-b53f-410d-8ebd-083ed40da91c"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""backward"",
+                    ""id"": ""57344a78-cb58-41ff-b981-0b8ec985eae6"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -206,6 +362,11 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_Walk = m_Player.FindAction("Walk", throwIfNotFound: true);
         m_Player_ChangeCam = m_Player.FindAction("ChangeCam", throwIfNotFound: true);
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
+        // Drone
+        m_Drone = asset.FindActionMap("Drone", throwIfNotFound: true);
+        m_Drone_Flight = m_Drone.FindAction("Flight", throwIfNotFound: true);
+        m_Drone_Thrust = m_Drone.FindAction("Thrust", throwIfNotFound: true);
+        m_Drone_Escape = m_Drone.FindAction("Escape", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -334,6 +495,55 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Drone
+    private readonly InputActionMap m_Drone;
+    private IDroneActions m_DroneActionsCallbackInterface;
+    private readonly InputAction m_Drone_Flight;
+    private readonly InputAction m_Drone_Thrust;
+    private readonly InputAction m_Drone_Escape;
+    public struct DroneActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public DroneActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Flight => m_Wrapper.m_Drone_Flight;
+        public InputAction @Thrust => m_Wrapper.m_Drone_Thrust;
+        public InputAction @Escape => m_Wrapper.m_Drone_Escape;
+        public InputActionMap Get() { return m_Wrapper.m_Drone; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DroneActions set) { return set.Get(); }
+        public void SetCallbacks(IDroneActions instance)
+        {
+            if (m_Wrapper.m_DroneActionsCallbackInterface != null)
+            {
+                @Flight.started -= m_Wrapper.m_DroneActionsCallbackInterface.OnFlight;
+                @Flight.performed -= m_Wrapper.m_DroneActionsCallbackInterface.OnFlight;
+                @Flight.canceled -= m_Wrapper.m_DroneActionsCallbackInterface.OnFlight;
+                @Thrust.started -= m_Wrapper.m_DroneActionsCallbackInterface.OnThrust;
+                @Thrust.performed -= m_Wrapper.m_DroneActionsCallbackInterface.OnThrust;
+                @Thrust.canceled -= m_Wrapper.m_DroneActionsCallbackInterface.OnThrust;
+                @Escape.started -= m_Wrapper.m_DroneActionsCallbackInterface.OnEscape;
+                @Escape.performed -= m_Wrapper.m_DroneActionsCallbackInterface.OnEscape;
+                @Escape.canceled -= m_Wrapper.m_DroneActionsCallbackInterface.OnEscape;
+            }
+            m_Wrapper.m_DroneActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Flight.started += instance.OnFlight;
+                @Flight.performed += instance.OnFlight;
+                @Flight.canceled += instance.OnFlight;
+                @Thrust.started += instance.OnThrust;
+                @Thrust.performed += instance.OnThrust;
+                @Thrust.canceled += instance.OnThrust;
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
+            }
+        }
+    }
+    public DroneActions @Drone => new DroneActions(this);
     public interface IPlayerActions
     {
         void OnAction(InputAction.CallbackContext context);
@@ -341,6 +551,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnHold(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
         void OnChangeCam(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
+    }
+    public interface IDroneActions
+    {
+        void OnFlight(InputAction.CallbackContext context);
+        void OnThrust(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
     }
 }

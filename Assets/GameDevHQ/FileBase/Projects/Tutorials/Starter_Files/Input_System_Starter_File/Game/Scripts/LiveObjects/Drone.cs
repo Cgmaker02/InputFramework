@@ -37,12 +37,27 @@ namespace Game.Scripts.LiveObjects
             InteractableZone.onZoneInteractionComplete += EnterFlightMode;
             _input = new PlayerInputActions();
             _input.Player.Enable();
-            _input.Player.Escape.performed += Escape_performed;
+            _input.Drone.Enable();
+            _input.Drone.Flight.performed += Flight_performed;
+            _input.Drone.Thrust.performed += Thrust_performed;
+            _input.Drone.Escape.performed += Escape_performed;
         }
 
         private void Escape_performed(InputAction.CallbackContext obj)
         {
             ExitFlightMode();
+        }
+
+        private void Thrust_performed(InputAction.CallbackContext obj)
+        {
+            _input.Drone.Enable();
+            _input.Player.Disable();
+        }
+
+        private void Flight_performed(InputAction.CallbackContext obj)
+        {
+            _input.Drone.Enable();
+            _input.Player.Disable();
         }
 
         private void EnterFlightMode(InteractableZone zone)
@@ -69,8 +84,9 @@ namespace Game.Scripts.LiveObjects
         {
             if (_inFlightMode)
             {
-                CalculateTilt();
-                CalculateMovementUpdate();
+                //CalculateTilt();
+                // CalculateMovementUpdate();
+                CalculateFlight();
 
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
@@ -85,10 +101,13 @@ namespace Game.Scripts.LiveObjects
         {
             _rigidbody.AddForce(transform.up * (9.81f), ForceMode.Acceleration);
             if (_inFlightMode)
-                CalculateMovementFixedUpdate();
+            {
+                OnThrust();
+            }
+               // CalculateMovementFixedUpdate();
         }
 
-        private void CalculateMovementUpdate()
+       /* private void CalculateMovementUpdate()
         {
             if (Input.GetKey(KeyCode.LeftArrow))
             {
@@ -102,9 +121,9 @@ namespace Game.Scripts.LiveObjects
                 tempRot.y += _speed / 3;
                 transform.localRotation = Quaternion.Euler(tempRot);
             }
-        }
+        }*/
 
-        private void CalculateMovementFixedUpdate()
+       /* private void CalculateMovementFixedUpdate()
         {
             
             if (Input.GetKey(KeyCode.Space))
@@ -115,9 +134,9 @@ namespace Game.Scripts.LiveObjects
             {
                 _rigidbody.AddForce(-transform.up * _speed, ForceMode.Acceleration);
             }
-        }
+        }*/
 
-        private void CalculateTilt()
+       /* private void CalculateTilt()
         {
             if (Input.GetKey(KeyCode.A)) 
                 transform.rotation = Quaternion.Euler(00, transform.localRotation.eulerAngles.y, 30);
@@ -129,11 +148,31 @@ namespace Game.Scripts.LiveObjects
                 transform.rotation = Quaternion.Euler(-30, transform.localRotation.eulerAngles.y, 0);
             else 
                 transform.rotation = Quaternion.Euler(0, transform.localRotation.eulerAngles.y, 0);
-        }
+        }*/
 
         private void OnDisable()
         {
             InteractableZone.onZoneInteractionComplete -= EnterFlightMode;
         }
+
+        private void OnThrust()
+        {
+            var moveby = _input.Drone.Thrust.ReadValue<float>();
+            _rigidbody.AddForce((transform.up * moveby) * _speed, ForceMode.Acceleration);
+
+        }
+
+        private void CalculateFlight()
+        {
+            var move = _input.Drone.Flight.ReadValue<Vector3>();
+            float h = move.x;
+            float v = move.z;
+
+            transform.Rotate(transform.up, h);
+
+            transform.Translate(new Vector3(0, 0, v * _speed * Time.deltaTime));
+        }
     }
+
+   
 }
