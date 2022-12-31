@@ -29,8 +29,10 @@ namespace Game.Scripts.LiveObjects
         {
             InteractableZone.onZoneInteractionComplete += EnterDriveMode;
             _input = new PlayerInputActions();
-            _input.Player.Enable();
-            _input.Player.Escape.performed += Escape_performed;
+            _input.Forklift.Enable();
+            _input.Forklift.Escape.performed += Escape_performed;
+          
+            
         }
 
         private void Escape_performed(InputAction.CallbackContext obj)
@@ -65,16 +67,19 @@ namespace Game.Scripts.LiveObjects
             {
                 LiftControls();
                 CalcutateMovement();
-                if (Input.GetKeyDown(KeyCode.Escape))
-                    ExitDriveMode();
+                //if (Input.GetKeyDown(KeyCode.Escape))
+                   // ExitDriveMode();
             }
 
         }
 
         private void CalcutateMovement()
         {
-            float h = Input.GetAxisRaw("Horizontal");
-            float v = Input.GetAxisRaw("Vertical");
+            var move = _input.Forklift.Move.ReadValue<Vector3>();
+            float h = move.x;
+            float v = move.z;
+            //float h = Input.GetAxisRaw("Horizontal");
+            //float v = Input.GetAxisRaw("Vertical");
             var direction = new Vector3(0, 0, v);
             var velocity = direction * _speed;
 
@@ -90,9 +95,12 @@ namespace Game.Scripts.LiveObjects
 
         private void LiftControls()
         {
-            if (Input.GetKey(KeyCode.R))
+            var liftmode = _input.Forklift.Lift.ReadValue<float>();
+           // if (Input.GetKey(KeyCode.R))
+           if(liftmode > 0)
                 LiftUpRoutine();
-            else if (Input.GetKey(KeyCode.T))
+            //else if (Input.GetKey(KeyCode.T))
+           else if(liftmode < 0) 
                 LiftDownRoutine();
         }
 
