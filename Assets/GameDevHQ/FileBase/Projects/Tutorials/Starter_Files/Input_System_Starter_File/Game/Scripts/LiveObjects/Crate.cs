@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Game.Scripts.LiveObjects
 {
@@ -12,12 +13,51 @@ namespace Game.Scripts.LiveObjects
         [SerializeField] private BoxCollider _crateCollider;
         [SerializeField] private InteractableZone _interactableZone;
         private bool _isReadyToBreak = false;
+        private PlayerInputActions _input;
+        public bool _canbreak = false;
+        
 
-        private List<Rigidbody> _brakeOff = new List<Rigidbody>();
+        public List<Rigidbody> _brakeOff = new List<Rigidbody>();
 
         private void OnEnable()
         {
             InteractableZone.onZoneInteractionComplete += InteractableZone_onZoneInteractionComplete;
+            _input = new PlayerInputActions();
+            _input.Crate.Enable();
+            _input.Crate.BreakCrate.canceled += BreakCrate_canceled;
+            _input.Crate.BreakCrate.performed += BreakCrate_performed;
+        }
+
+        private void BreakCrate_performed(InputAction.CallbackContext obj)
+        {
+            if(_canbreak)
+            {
+                if(_brakeOff.Count >= 4)
+                {
+                    BreakPart2();
+                    StartCoroutine(PunchDelay());
+                }
+            }
+        }
+
+        private void BreakCrate_canceled(InputAction.CallbackContext obj)
+        {
+            if (_canbreak && obj.duration < .4)
+            {
+                if (_brakeOff.Count > 0)
+                {
+                    BreakPart();
+                    StartCoroutine(PunchDelay());
+                 
+                }
+                else if (_brakeOff.Count == 0)
+                {
+                    _isReadyToBreak = false;
+                    _crateCollider.enabled = false;
+                    _interactableZone.CompleteTask(6);
+                    Debug.Log("Completely Busted");
+                }
+            }
         }
 
         private void InteractableZone_onZoneInteractionComplete(InteractableZone zone)
@@ -32,10 +72,11 @@ namespace Game.Scripts.LiveObjects
 
             if (_isReadyToBreak && zone.GetZoneID() == 6) //Crate zone            
             {
-                if (_brakeOff.Count > 0)
+               /* if (_brakeOff.Count > 0)
                 {
                     BreakPart();
                     StartCoroutine(PunchDelay());
+                    
                 }
                 else if(_brakeOff.Count == 0)
                 {
@@ -43,7 +84,7 @@ namespace Game.Scripts.LiveObjects
                     _crateCollider.enabled = false;
                     _interactableZone.CompleteTask(6);
                     Debug.Log("Completely Busted");
-                }
+                }*/
             }
         }
 
@@ -53,7 +94,13 @@ namespace Game.Scripts.LiveObjects
             
         }
 
-
+        private void Update()
+        {
+            if (_interactableZone._inZone == false)
+                _canbreak = false;
+            if (_interactableZone._inZone == true)
+                _canbreak = true;
+        }
 
         public void BreakPart()
         {
@@ -78,6 +125,15 @@ namespace Game.Scripts.LiveObjects
         private void OnDisable()
         {
             InteractableZone.onZoneInteractionComplete -= InteractableZone_onZoneInteractionComplete;
+        }
+
+        public void BreakPart2()
+        {
+            int rng = Random.Range(0, _brakeOff.Count);
+            _brakeOff[rng].constraints = RigidbodyConstraints.None;
+            _brakeOff[rng].AddForce(new Vector3(1f, 1f, 1f), ForceMode.Force);
+            _brakeOff.Remove(_brakeOff[rng]);
+            _brakeOff.Remove(_brakeOff[rng]);
         }
     }
 }

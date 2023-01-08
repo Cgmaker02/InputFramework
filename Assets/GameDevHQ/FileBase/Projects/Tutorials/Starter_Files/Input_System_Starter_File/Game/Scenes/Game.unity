@@ -6045,7 +6045,7 @@ Transform:
   m_Children:
   - {fileID: 744979006}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -102.957, z: 0}
 --- !u!1001 &369121378
 PrefabInstance:
@@ -13235,7 +13235,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 6.57e-43, y: 3.4739192e+11, z: 6.57e-43, w: 2.387723e-39}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -26247,7 +26247,7 @@ Transform:
   m_Children:
   - {fileID: 1946563930}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1266060215
 MonoBehaviour:
@@ -41782,8 +41782,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 359860633}
-  _detonator: {fileID: 0}
-  _interaction: {fileID: 1176696857}
 --- !u!4 &2144513253
 Transform:
   m_ObjectHideFlags: 0

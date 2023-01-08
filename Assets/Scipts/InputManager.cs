@@ -11,7 +11,7 @@ public class InputManager : MonoBehaviour
     private PlayerInputActions _input;
     [SerializeField]
     private Player _player;
-    
+    private Crate _crate;
     
 
     // Start is called before the first frame update
@@ -32,9 +32,6 @@ public class InputManager : MonoBehaviour
     {
         _input = new PlayerInputActions();
         _input.Player.Enable();
-       
-
+        _input.Crate.Enable();
     }
-
-   
 }
